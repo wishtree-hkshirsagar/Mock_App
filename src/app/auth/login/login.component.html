@@ -1,0 +1,16 @@
+<section>
+    <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="loginForm" fxLayoutGap="10px" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <input type="email" matInput placeholder="your email here!" autocomplete="off" name="email" formControlName="email">
+            <mat-error>{{emailValidation()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field hintLabel="Should be atleast 6 characters long!">
+            <input type="password" matInput placeholder="your password here!" #box (keyup)="0" autocomplete="off" name="password" formControlName="password">
+            <mat-hint align="end">{{ box.value?.length }} / 6</mat-hint>
+            <mat-error>{{passwordValidation()}}</mat-error>
+        </mat-form-field>
+
+        <button *ngIf="!isLoading" type="submit" [disabled]="loginForm.invalid" mat-raised-button color="primary">Submit</button>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </form>
+</section>

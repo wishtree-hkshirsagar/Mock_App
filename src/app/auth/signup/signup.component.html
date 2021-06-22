@@ -1,0 +1,28 @@
+<section class="signup-form">
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <input type="email" matInput placeholder="your email here!" autocomplete="off" name="email" formControlName="email">
+            <mat-error>{{emailValidation()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field hintLabel="Should be atleast 6 characters long!">
+            <input type="password" matInput placeholder="your password here!" #box (keyup)="0" autocomplete="off" name="password" formControlName="password">
+            <mat-hint align="end">{{ box.value?.length }} / 6</mat-hint>
+            <mat-error>{{passwordValidation()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="password" matInput placeholder=" confirm password!" name="confirmPassword" formControlName="confirmPassword">
+            <mat-error>{{confirmPasswordValidation()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput placeholder="your birth date!" [matDatepicker]="picker" autocomplete="off" name="birthdate" formControlName="birthdate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>{{dateValidation()}}</mat-error>
+        </mat-form-field>
+
+        <mat-checkbox name="termsAndConditions" color="primary" formControlName="termsAndConditions">Agree to Terms and Conditions.</mat-checkbox>
+
+        <button type="submit" mat-raised-button color="primary" *ngIf="!isLoading" [disabled]="signupForm.invalid">Submit</button>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </form>
+</section>
