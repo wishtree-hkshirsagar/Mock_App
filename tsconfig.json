@@ -4,6 +4,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "demo-lib": [
+        "dist/demo-lib/demo-lib",
+        "dist/demo-lib"
+      ]
+    },
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -18,6 +24,6 @@
     ]
   },
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false
+    "enableI18nLegacyMessageIdFormat": false,
   }
 }
